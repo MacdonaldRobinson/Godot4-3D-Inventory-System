@@ -1,0 +1,39 @@
+[gd_scene load_steps=5 format=3 uid="uid://be6wiqua877j2"]
+
+[ext_resource type="Texture2D" uid="uid://cdj06ubewxrhe" path="res://icon.svg" id="1_o1b20"]
+[ext_resource type="PackedScene" uid="uid://ne65riupfetd" path="res://Items/Interactable/Door/Door.tscn" id="2_wsbi7"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3xgqj"]
+albedo_texture = ExtResource("1_o1b20")
+uv1_triplanar = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1x1e6"]
+albedo_texture = ExtResource("1_o1b20")
+
+[node name="Room" type="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.37156, 0)
+
+[node name="CSGCombiner3D" type="CSGCombiner3D" parent="."]
+material_override = SubResource("StandardMaterial3D_3xgqj")
+use_collision = true
+
+[node name="Walls" type="CSGCombiner3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.03673, 0)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="CSGCombiner3D/Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.49011, 0, 0)
+size = Vector3(20, 5, 20)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="CSGCombiner3D/Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.49011, 0.309027, 0)
+operation = 2
+size = Vector3(19, 5.25, 19)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="CSGCombiner3D/Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.49442, -0.520177, 0)
+material_override = SubResource("StandardMaterial3D_1x1e6")
+operation = 2
+size = Vector3(2, 3, 2)
+
+[node name="Door" parent="." instance=ExtResource("2_wsbi7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.2483, 0.555077, 0)

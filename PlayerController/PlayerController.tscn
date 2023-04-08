@@ -1,0 +1,18 @@
+[gd_scene load_steps=5 format=3 uid="uid://bskswmndvttle"]
+
+[ext_resource type="Script" path="res://PlayerController/PlayerController.gd" id="1_j8y6g"]
+[ext_resource type="PackedScene" uid="uid://iefrevnkl38v" path="res://CameraController/CameraController.tscn" id="2_ign4s"]
+[ext_resource type="PackedScene" uid="uid://dxgko0bcehgd6" path="res://PlayerInteractionController/PlayerInteractionController.tscn" id="3_axoa2"]
+[ext_resource type="PackedScene" uid="uid://dltah5lmcanj7" path="res://InventoryController/InventoryController.tscn" id="4_fu0cn"]
+
+[node name="PlayerController" type="Node3D"]
+script = ExtResource("1_j8y6g")
+
+[node name="CameraController" parent="." node_paths=PackedStringArray("look_at_target") instance=ExtResource("2_ign4s")]
+top_level = true
+look_at_target = NodePath("..")
+
+[node name="PlayerInteractionController" parent="." node_paths=PackedStringArray("player_controller") instance=ExtResource("3_axoa2")]
+player_controller = NodePath("..")
+
+[node name="InventoryController" parent="." instance=ExtResource("4_fu0cn")]
